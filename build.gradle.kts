@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 
-group = "org.pwlimaverde"
+group = "org.pwlimaverde.return_success_or_error_kt"
 version = "1.0.0"
 
 repositories {
