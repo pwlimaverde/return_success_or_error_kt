@@ -13,7 +13,7 @@ Package criado com intuito de abstrair e simplificar os usecases, repositorios, 
 Exemplo de chamada à partir de um banco de dados:
 
 Datasourse:
-A classe responsavel pela consulta, nesse caso ```ConnectivityDatasource```, precisa implementar a abstração do datasource ```Datasource<Tipo>```, que por sua vez precisa declarar o ```Tipo``` do dado a ser retornado para chegar ao resultado. ex: ```Datasource<bool>```. A classe ```ParametersReturnResult``` é uma abstração para carregar os parameters necesssários para fazer a chamada externa, ex:
+A classe responsavel pela consulta, nesse caso ```ConnectivityDatasource```, precisa implementar a abstração do datasource ```Datasource<Tipo>```, que por sua vez precisa declarar o ```Tipo``` do dado a ser retornado para chegar ao resultado. ex: ```Datasource<bool>```. A classe ```ParametersReturnResult``` é uma abstração para carregar os parameters necessários para fazer a chamada externa, ex:
 ```
 class ParametersSalvarHeader implements ParametersReturnResult {
   final String doc;
@@ -39,7 +39,7 @@ class ParametersSalvarHeader implements ParametersReturnResult {
       );
 }
 ```
-Ao implementar a classe ```ParametersReturnResult```, precisa sorescrever o ```ParametersBasic```, que é o responsável pelos parametros básicos necessárrios. Nessa classe é armazenado os dados que serão consultados.
+Ao implementar a classe ```ParametersReturnResult```, precisa sobrescrever o ```ParametersBasic```, que é o responsável pelos parametros básicos necessários. Nessa classe é armazenado os dados que serão consultados.
 
 Implementa-se a chamada externa ```Datasource<Tipo>``` tipando com o dado desejado ex: ```Datasource<Stream<UserModel>>```, ex:
 ```
@@ -88,7 +88,7 @@ O resultado da função ```UsecaseBase<TypeUsecase>``` ou ```UsecaseBaseCallData
 Exemplo de recuperação da informação contida no ```ReturnSuccessOrError<TypeUsecase>```:
 
 ```final result = await value.result```
-A partir do ```ReturnSuccessOrError<TypeUsecase>``` poderar ser verificado se o retorno foi sucesso ou erro, apenas verificando o swith case.
+A partir do ```ReturnSuccessOrError<TypeUsecase>``` podera ser verificado se o retorno foi sucesso ou erro, apenas verificando o switch case.
 
 Exemplo de verificação:
 
@@ -103,7 +103,7 @@ switch (result) {
 
 
 Usecase com chamada externa de Datasource:
-Extende a regra de negócio ```Usecase``` com ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` tipando o ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` com o dado desejado ex: ```UsecaseBaseCallData<String, ({bool conect, String typeConect})>```. Onde o primeiro tipo é o retorno que será feito pelo usecase, e o segundo é o tipo do dado que será retornado do datasource.
+Estende a regra de negócio ```Usecase``` com ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` tipando o ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` com o dado desejado ex: ```UsecaseBaseCallData<String, ({bool conect, String typeConect})>```. Onde o primeiro tipo é o retorno que será feito pelo usecase, e o segundo é o tipo do dado que será retornado do datasource.
 ```
 final class ChecarConeccaoUsecase
     extends UsecaseBaseCallData<String, ({bool conect, String typeConect})> {
@@ -135,9 +135,9 @@ final class ChecarConeccaoUsecase
   }
 }
 ```
-A função ```resultDatasource(parameters: parameters, datasource: super.datasource)``` rertora os dados do datasouce e após isso os dados são tratados diretamente no usecase para que se transformem no tipo final esperdo.
+A função ```resultDatasource(parameters: parameters, datasource: super.datasource)``` retorna os dados do datasouce e após isso os dados são tratados diretamente no usecase para que se transformem no tipo final esperado.
 
-Instanciando a Class Usecase extendida da ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` e extratindo o resultado:
+estanciando a Class Usecase estendida da ```UsecaseBaseCallData<TypeUsecase, TypeDatasource>``` e extraindo o resultado:
 ```
 final checarConeccaoUsecase = ChecarConeccaoUsecase(
     datasource: ConnectivityDatasource(
@@ -172,7 +172,7 @@ final checarConeccaoUsecase = ChecarConeccaoUsecase(
 ```
 
 Usecase apenas com a regra de negócio:
-Extende a regra de negócio sem chamadas externas do datasouce ```Usecase``` com ```UsecaseBase<TypeUsecase>``` tipando o ```UsecaseBase<TypeUsecase>``` com o dado desejado ex: ```UsecaseBase<String>```. Onde é tipado com o retorno que será feito pelo usecase.
+Estende a regra de negócio sem chamadas externas do datasouce ```Usecase``` com ```UsecaseBase<TypeUsecase>``` tipando o ```UsecaseBase<TypeUsecase>``` com o dado desejado ex: ```UsecaseBase<String>```. Onde é tipado com o retorno que será feito pelo usecase.
 
 ```
 final class ChecarTypeConeccaoUsecase extends UsecaseBase<String> {
@@ -211,13 +211,13 @@ final class ChecarTypeConeccaoUsecase extends UsecaseBase<String> {
 ```
 
 A classe "ParametersReturnResult". Espera receber os parametros gerais necessários para a chamada do Usecase, juntamente com os parametros obrigatórios ParametersBasic:
-```showRuntimeMilliseconds``` responsável por mostar o tempo que levou para executar a chamada em milesegundos;
+```showRuntimeMilliseconds``` responsável por mostrar o tempo que levou para executar a chamada em mile segundos;
 ```nameFeature``` responsável pela identificação da feature;
 ```AppError``` responsável pelo tratamento do Erro;
 
 
 Exemplo de hierarquia de uma feature:
-Chegar conexção - Checa se o dispositivo está conectado a internet e retorna um bool:
+Chegar conexão - Checa se o dispositivo está conectado a internet e retorna um bool:
 
 ```
 hierarquia:
