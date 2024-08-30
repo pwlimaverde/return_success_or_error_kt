@@ -26,6 +26,9 @@ kotlin{
 publishing{
     publications{
         create<MavenPublication>("Maven"){
+            groupId = "com.pwlimaverde"
+            artifactId = "return_success_or_error_kt"
+            version = "1.0.0"
             from(components["kotlin"])
         }
     }
