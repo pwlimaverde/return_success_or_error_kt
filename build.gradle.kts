@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.pwlimaverde.return_success_or_error_kt"
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
@@ -28,7 +28,7 @@ publishing{
         create<MavenPublication>("Maven"){
             groupId = "com.pwlimaverde"
             artifactId = "return_success_or_error_kt"
-            version = "1.0.0"
+            version = "1.1.0"
             from(components["kotlin"])
         }
     }
