@@ -4,5 +4,5 @@ import com.pwlimaverde.return_success_or_error_kt.error.AppError
 import com.pwlimaverde.return_success_or_error_kt.error.ErrorGeneric
 
 data class NoParams(private val errorParams: AppError?) : ParametersReturnResult {
-    override val error = errorParams ?: ErrorGeneric("Erro desconhecido")
+    override var error = errorParams ?: ErrorGeneric("Erro desconhecido")
 }

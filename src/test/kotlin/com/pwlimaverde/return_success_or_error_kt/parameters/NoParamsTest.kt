@@ -13,7 +13,7 @@ class ErrorTest(message: String) : AppError(message) {
     }
 }
 
-data class TestParams(override val error: AppError, val nome: String, val idade: Int) : ParametersReturnResult
+data class TestParams(override var error: AppError, val nome: String, val idade: Int) : ParametersReturnResult
 
 class NoParamsTest {
 

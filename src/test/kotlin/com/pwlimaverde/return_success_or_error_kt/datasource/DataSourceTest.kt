@@ -1,7 +1,6 @@
 package com.pwlimaverde.return_success_or_error_kt.datasource
 
 import com.pwlimaverde.return_success_or_error_kt.error.AppError
-import com.pwlimaverde.return_success_or_error_kt.parameters.NoParams
 import com.pwlimaverde.return_success_or_error_kt.parameters.ParametersReturnResult
 import org.junit.jupiter.api.Assertions.*
 
@@ -23,7 +22,7 @@ class ErrorTest(message: String) : AppError(message) {
     }
 }
 
-data class ParametersTeste(override val error: AppError, val boolean: Boolean) :
+data class ParametersTeste(override var error: AppError, val boolean: Boolean) :
     ParametersReturnResult
 
 class TesteDataSource(private val externalMock: ExternalMock) :
