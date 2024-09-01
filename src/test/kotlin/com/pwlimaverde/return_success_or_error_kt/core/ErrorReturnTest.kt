@@ -9,8 +9,26 @@ import kotlin.test.assertIs
 
 class ErrorReturnTest {
 
+    private fun testeReturn(): ReturnSuccessOrError<Boolean> {
+        val testResult = false
+        return if (testResult) {
+            SuccessReturn(true)
+        } else {
+            ErrorReturn(ErrorGeneric("Erro desconhecido"))
+        }
+
+    }
+
     @Test
     fun getResult() {
+        when (val teste = testeReturn()) {
+            is ErrorReturn -> {
+                assertEquals("Erro desconhecido", teste.result.message)
+                assertIs<AppError>(teste.result)
+                assertIs<ErrorReturn<Boolean>>(teste)
+            }
+            else -> {}
+        }
         val resulBoolean = ErrorReturn<Boolean>(ErrorGeneric("Teste Error Boolean"))
         val resultString = ErrorReturn<String>(ErrorGeneric("Teste Error String"))
         assertEquals("Teste Error Boolean", resulBoolean.result.message)
