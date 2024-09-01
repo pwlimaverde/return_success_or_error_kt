@@ -89,7 +89,7 @@ The result of function ```UsecaseBase<TypeUsecase>``` or ```UsecaseBaseCallData<
 Example of recovering the information contained in ```ReturnSuccessOrError<TypeUsecase>```:
 
 ```final result = await value.result```
-From the ```ReturnSuccessOrError<TypeUsecase>``` it can be verified if the return was success or error, just checking the swith case.
+From the ```ReturnSuccessOrError<TypeUsecase>``` it can be verified if the return was success or error, just checking the switch case.
 
 Verification example:
 
