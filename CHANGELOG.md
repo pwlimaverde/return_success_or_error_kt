@@ -1,4 +1,4 @@
-[1.2.0] - 29/08/2024.
+[1.2.0] - 01/09/2024.
 1 - Correção ortografica README.
 2 - Implementação das Classes ```ReturnSuccessOrError```, ```ErrorReturn```, ```SuccessReturn```,
 ```AppError```, ```ErrorGeneric```, ```NoParams```, ```DataSource```, ```UseCaseCallData``` e 
