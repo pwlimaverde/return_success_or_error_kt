@@ -6,7 +6,7 @@ import com.pwlimaverde.return_success_or_error_kt.parameters.ParametersReturnRes
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 abstract class UseCaseCallData<TypeUseCase, TypeDataSource, Parameters : ParametersReturnResult>(
-    private val dataSource: DataSource<TypeDataSource, Parameters>,
+    dataSource: DataSource<TypeDataSource, Parameters>,
 ) : Repository<TypeDataSource, Parameters>(dataSource) {
     abstract operator fun invoke(parameters: Parameters): ReturnSuccessOrError<TypeUseCase>
 
