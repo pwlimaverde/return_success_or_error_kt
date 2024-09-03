@@ -1,19 +1,12 @@
 package com.pwlimaverde.return_success_or_error_kt.parameters
 
-import com.pwlimaverde.return_success_or_error_kt.error.AppError
 import com.pwlimaverde.return_success_or_error_kt.error.ErrorGeneric
+import com.pwlimaverde.return_success_or_error_kt.mock.ErrorTest
+import com.pwlimaverde.return_success_or_error_kt.mock.TestParams
 import org.junit.jupiter.api.Assertions.*
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertIs
-
-class ErrorTest(message: String) : AppError(message) {
-    override fun toString(): String {
-        return "ErrorTest - $message"
-    }
-}
-
-data class TestParams(override var error: AppError, val nome: String, val idade: Int) : ParametersReturnResult
 
 class NoParamsTest {
 
