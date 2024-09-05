@@ -13,7 +13,7 @@ interface UseCaseBase<TypeUseCase, Parameters : ParametersReturnResult> {
 
     suspend fun invokeCoroutine(parameters: Parameters): ReturnSuccessOrError<TypeUseCase> {
         return withContext(Dispatchers.Default) {
-            println("teste invokeThread2 ${Thread.currentThread().name}")
+            println("InvokeCoroutine Thread: ${Thread.currentThread().name}")
             invoke(parameters)
         }
     }
@@ -32,7 +32,7 @@ interface UseCaseBase<TypeUseCase, Parameters : ParametersReturnResult> {
         callback: (ReturnSuccessOrError<TypeUseCase>) -> Unit,
     ) {
         Thread {
-            println("teste invokeInNewThreadAsync ${Thread.currentThread().name}")
+            println("InvokeThread Thread: ${Thread.currentThread().name}")
             val result = invoke(parameters)
             callback(result)
         }.start()
