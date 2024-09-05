@@ -1,3 +1,10 @@
+[1.4.0] - 04/09/2024.
+1 - Refatoração da Classes ```UseCaseBase``` e ```UseCaseCallData``` .
+2 - Implementação nas Classes UseCase da função ```invokeCoroutine``` que executa o invoke em uma 
+nova Thread compativel com ```Coroutine```.
+3 - Refatoração dos testes, e atualização dos testes das Classes UseCase para as novas
+funcionalidades ```invokeCoroutine```.
+
 [1.3.0] - 03/09/2024.
 1 - Implementação da Classes ```UseCaseBase```.
 2 - Implementação nas Classes UseCase da função ```invokeThread``` que executa o invoke em uma nova 
