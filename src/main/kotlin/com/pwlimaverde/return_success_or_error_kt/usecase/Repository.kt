@@ -16,7 +16,7 @@ sealed class Repository<TypeDataSource, Parameters : ParametersReturnResult>(
             return SuccessReturn(result)
         } catch (e: Exception) {
             val error = parameters.error
-            error.message = "$messageError - catch Repository${e.message}"
+            error.message = "$messageError - catch Repository ${e.message}"
             return ErrorReturn(error)
         }
     }

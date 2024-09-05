@@ -29,7 +29,7 @@ class UseCaseBaseTest {
         val useCase = TestUseCaseBase()
         when (val data = useCase(ParametersTeste(ErrorTest("teste"), true))) {
             is SuccessReturn<Boolean> -> {
-                println("teste use case ${data.result}")
+                println("getResult final result ${data.result}")
                 assertEquals(true, data.result)
             }
             else -> {}
@@ -47,11 +47,35 @@ class UseCaseBaseTest {
     }
 
     @Test
+    fun getResultCoroutine(): Unit = runTest {
+        val useCase = TestUseCaseBase()
+        println("getResultCoroutine inicial - Thread: ${Thread.currentThread().name}")
+        when (val data = useCase.invokeCoroutine(ParametersTeste(ErrorTest("teste"), true))) {
+            is SuccessReturn<Boolean> -> {
+                println("getResultCoroutine final result ${data.result} - Thread: ${Thread.currentThread().name}")
+                assertEquals(true, data.result)
+            }
+            else -> {}
+        }
+    }
+    @Test
+    fun getResultCoroutineError(): Unit = runTest {
+        val useCase = TestUseCaseBase()
+        when (val data = useCase.invokeCoroutine(ParametersTeste(ErrorTest("teste"), false))) {
+            is ErrorReturn<Boolean> -> {
+                assertEquals("teste", data.result.message)
+            }
+            else -> {}
+        }
+    }
+
+    @Test
     fun getResultThread(): Unit = runTest {
         val useCase = TestUseCaseBase()
+        println("getResultThread inicial - Thread:${Thread.currentThread().name}")
         when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), true))) {
             is SuccessReturn<Boolean> -> {
-                println("teste use case ${data.result}")
+                println("getResultThread final result ${data.result} - Thread:${Thread.currentThread().name}")
                 assertEquals(true, data.result)
             }
             else -> {}

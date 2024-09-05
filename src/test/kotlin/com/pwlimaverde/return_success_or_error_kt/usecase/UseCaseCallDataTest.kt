@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 
-
 class TestUseCaseCallData(
     dataSource: DataSource<Boolean, ParametersTeste>,
 ) : UseCaseCallData<String, Boolean, ParametersTeste>(dataSource) {
@@ -23,7 +22,6 @@ class TestUseCaseCallData(
             is SuccessReturn<Boolean> -> {
                 SuccessReturn("Success data ${data.result}")
             }
-
             is ErrorReturn<Boolean> -> {
                 ErrorReturn(data.result)
             }
@@ -34,67 +32,80 @@ class TestUseCaseCallData(
 class UseCaseCallDataTest {
 
     @Test
-    fun getResult() {
+    fun getResultData() {
         val useCase = TestUseCaseCallData(TesteDataSource(ExternalMock()))
         when (val data = useCase(ParametersTeste(ErrorTest("teste"), true))) {
             is SuccessReturn<String> -> {
-                println("teste use case ${data.result}")
+                println("getResultData result ${data.result}")
                 assertEquals("Success data true", data.result)
             }
-
-            is ErrorReturn<String> -> println("teste use case error ${data.result}")
-
+            is ErrorReturn<String> -> println("getResultData error ${data.result}")
         }
     }
 
-
     @Test
-    fun getResultNewThread(): Unit = runTest {
-        val useCase = TestUseCaseCallData(TesteDataSource(ExternalMock()))
-        when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), true))) {
-            is SuccessReturn -> {
-                println("teste use case Thread ${data.result}")
-                assertEquals("Success data true", data.result)
-            }
-            is ErrorReturn -> println("teste use case error ${data.result}")
-        }
-
-    }
-
-
-    @Test
-    fun getResultError() {
+    fun getResultDataError() {
         val useCase = TestUseCaseCallData(
             TesteDataSource(ExternalMock()),
         )
         when (val data = useCase(ParametersTeste(ErrorTest("teste"), false))) {
-            is SuccessReturn<String> -> {
-                println("teste use case ${data.result}")
-                assertEquals("Success data true", data.result)
-            }
-
+            is SuccessReturn<String> -> println("getResultDataError ${data.result}")
             is ErrorReturn<String> -> {
-                assertEquals("teste - catch RepositoryErro ao retornar valor", data.result.message)
+                assertEquals(
+                    "teste - catch Repository Erro ao retornar valor",
+                    data.result.message
+                )
             }
-
         }
     }
 
     @Test
-    fun getResultNewThreadError(): Unit = runTest {
+    fun getResultThreadData(): Unit = runTest {
+        val useCase = TestUseCaseCallData(TesteDataSource(ExternalMock()))
+        when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), true))) {
+            is SuccessReturn -> {
+                println("getResultThreadData - Thread ${data.result}")
+                assertEquals("Success data true", data.result)
+            }
+            is ErrorReturn -> println("getResultThreadData error ${data.result}")
+        }
+    }
+
+    @Test
+    fun getResultThreadDataError(): Unit = runTest {
         val useCase = TestUseCaseCallData(
             TesteDataSource(ExternalMock()),
         )
         when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), false))) {
-            is SuccessReturn<String> -> {
-                println("teste use case ${data.result}")
+            is SuccessReturn<String> -> println("getResultThreadDataError ${data.result}")
+            is ErrorReturn<String> -> {
+                assertEquals("teste - catch Repository Erro ao retornar valor", data.result.message)
+            }
+        }
+    }
+
+    @Test
+    fun getResultCoroutineData(): Unit = runTest {
+        val useCase = TestUseCaseCallData(TesteDataSource(ExternalMock()))
+        when (val data = useCase.invokeCoroutine(ParametersTeste(ErrorTest("teste"), true))) {
+            is SuccessReturn -> {
+                println("tgetResultCoroutineData - Thread ${data.result}")
                 assertEquals("Success data true", data.result)
             }
+            is ErrorReturn -> println("getResultCoroutineData error ${data.result}")
+        }
+    }
 
+    @Test
+    fun getResultCoroutineDataError(): Unit = runTest {
+        val useCase = TestUseCaseCallData(
+            TesteDataSource(ExternalMock()),
+        )
+        when (val data = useCase.invokeCoroutine(ParametersTeste(ErrorTest("teste"), false))) {
+            is SuccessReturn<String> -> assertEquals("Success data true", data.result)
             is ErrorReturn<String> -> {
-                assertEquals("teste - catch RepositoryErro ao retornar valor", data.result.message)
+                assertEquals("teste - catch Repository Erro ao retornar valor", data.result.message)
             }
-
         }
     }
 }

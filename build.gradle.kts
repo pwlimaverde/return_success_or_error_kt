@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.pwlimaverde.return_success_or_error_kt"
-version = "1.3.0"
+version = "1.4.0"
 
 repositories {
     mavenCentral()
