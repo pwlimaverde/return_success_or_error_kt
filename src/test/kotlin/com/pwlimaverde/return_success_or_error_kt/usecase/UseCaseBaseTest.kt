@@ -6,7 +6,8 @@ import com.pwlimaverde.return_success_or_error_kt.core.SuccessReturn
 import com.pwlimaverde.return_success_or_error_kt.mock.ErrorTest
 import com.pwlimaverde.return_success_or_error_kt.mock.ParametersTeste
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+
 
 import org.junit.jupiter.api.Test
 

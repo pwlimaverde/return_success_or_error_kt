@@ -1,4 +1,8 @@
 [1.4.0] - 04/09/2024.
+1 - Atualização para catalog version.
+
+
+[1.4.0] - 04/09/2024.
 1 - Refatoração da Classes ```UseCaseBase``` e ```UseCaseCallData``` .
 2 - Implementação nas Classes UseCase da função ```invokeCoroutine``` que executa o invoke em uma 
 nova Thread compativel com ```Coroutine```.
