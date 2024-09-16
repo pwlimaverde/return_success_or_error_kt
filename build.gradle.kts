@@ -1,20 +1,21 @@
 plugins {
-    kotlin("jvm") version "2.0.10"
+    alias(libs.plugins.jetbrains.kotlin.jvm)
     application
     `maven-publish`
 }
 
 group = "org.pwlimaverde.return_success_or_error_kt"
-version = "1.4.0"
+version = "1.5.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.kotlin.test)
+    implementation(libs.coroutines)
+    testImplementation(libs.coroutines.testes)
 }
 
 tasks.test {

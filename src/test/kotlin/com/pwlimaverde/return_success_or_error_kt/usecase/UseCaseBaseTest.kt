@@ -6,12 +6,13 @@ import com.pwlimaverde.return_success_or_error_kt.core.SuccessReturn
 import com.pwlimaverde.return_success_or_error_kt.mock.ErrorTest
 import com.pwlimaverde.return_success_or_error_kt.mock.ParametersTeste
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+
 
 import org.junit.jupiter.api.Test
 
 class TestUseCaseBase() : UseCaseBase<Boolean, ParametersTeste> {
-    override fun invoke(parameters: ParametersTeste): ReturnSuccessOrError<Boolean> {
+    override suspend fun invoke(parameters: ParametersTeste): ReturnSuccessOrError<Boolean> {
         try {
             if (parameters.boolean) {
                 return SuccessReturn(true)
@@ -25,7 +26,7 @@ class TestUseCaseBase() : UseCaseBase<Boolean, ParametersTeste> {
 class UseCaseBaseTest {
 
     @Test
-    fun getResult() {
+    fun getResult(): Unit = runTest {
         val useCase = TestUseCaseBase()
         when (val data = useCase(ParametersTeste(ErrorTest("teste"), true))) {
             is SuccessReturn<Boolean> -> {
@@ -36,7 +37,7 @@ class UseCaseBaseTest {
         }
     }
     @Test
-    fun getResultError() {
+    fun getResultError(): Unit = runTest {
         val useCase = TestUseCaseBase()
         when (val data = useCase(ParametersTeste(ErrorTest("teste"), false))) {
             is ErrorReturn<Boolean> -> {
@@ -62,29 +63,6 @@ class UseCaseBaseTest {
     fun getResultCoroutineError(): Unit = runTest {
         val useCase = TestUseCaseBase()
         when (val data = useCase.invokeCoroutine(ParametersTeste(ErrorTest("teste"), false))) {
-            is ErrorReturn<Boolean> -> {
-                assertEquals("teste", data.result.message)
-            }
-            else -> {}
-        }
-    }
-
-    @Test
-    fun getResultThread(): Unit = runTest {
-        val useCase = TestUseCaseBase()
-        println("getResultThread inicial - Thread:${Thread.currentThread().name}")
-        when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), true))) {
-            is SuccessReturn<Boolean> -> {
-                println("getResultThread final result ${data.result} - Thread:${Thread.currentThread().name}")
-                assertEquals(true, data.result)
-            }
-            else -> {}
-        }
-    }
-    @Test
-    fun getResultThreadError(): Unit = runTest {
-        val useCase = TestUseCaseBase()
-        when (val data = useCase.invokeThread(ParametersTeste(ErrorTest("teste"), false))) {
             is ErrorReturn<Boolean> -> {
                 assertEquals("teste", data.result.message)
             }
