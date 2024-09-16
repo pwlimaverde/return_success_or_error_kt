@@ -29,7 +29,7 @@ data class TestParams(override var error: AppError, val nome: String, val idade:
 
 class TesteDataSource(private val externalMock: ExternalMock) :
     DataSource<Boolean, ParametersTeste> {
-    override fun invoke(parameters: ParametersTeste): Boolean {
+    override suspend fun invoke(parameters: ParametersTeste): Boolean {
         try {
             if (parameters.boolean) {
                 return externalMock.returnBoolean(true)
@@ -40,4 +40,5 @@ class TesteDataSource(private val externalMock: ExternalMock) :
             throw e
         }
     }
+
 }

@@ -9,7 +9,7 @@ import com.pwlimaverde.return_success_or_error_kt.parameters.ParametersReturnRes
 sealed class Repository<TypeDataSource, Parameters : ParametersReturnResult>(
     private val dataSource: DataSource<TypeDataSource, Parameters>,
 ) {
-    fun resultDatasource(parameters: Parameters): ReturnSuccessOrError<TypeDataSource> {
+   suspend fun resultDatasource(parameters: Parameters): ReturnSuccessOrError<TypeDataSource> {
         val messageError = parameters.error.message
         try {
             val result = dataSource(parameters)
