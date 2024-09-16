@@ -4,10 +4,9 @@ import com.pwlimaverde.return_success_or_error_kt.mock.ErrorTest
 import com.pwlimaverde.return_success_or_error_kt.mock.ExternalMock
 import com.pwlimaverde.return_success_or_error_kt.mock.ParametersTeste
 import com.pwlimaverde.return_success_or_error_kt.mock.TesteDataSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
