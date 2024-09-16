@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.0.20"
 junit = "5.8.2"
-coroutines = "1.8.1"
+coroutines = "1.9.0-RC.2"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
